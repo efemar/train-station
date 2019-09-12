@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Station Homework</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-database.js"></script>
+
+    <!--Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"
+        integrity="sha256-H9jAz//QLkDOy/nzE9G4aYijQtkLt9FvGmdUTwBk6gs=" crossorigin="anonymous"></script>
+
+</head>
+​
+
+<body>
+    <div class=container>
+        <!--Jumbotron-->
+        <div class="jumbotron bg-warning ">
+            <h1 class="display-4 text-white text-center text-dark"> Anytime is Train Time</h1>
+            <h4 class="display-8 text-white text-center text-dark">Choo Choo. Chee Chee</h4>
+        </div>
+        ​
+        <!--Current Employees-->
+        <div class="card">
+            <div class="card-header bg-primary text-white font-weight-bold">
+                Current Train Schedule
+            </div>
+
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Train Name:</th>
+                        <th scope="col">Destination:</th>
+                        <th scope="col">Frequency (mins):</th>
+                        <th scope="col">Next Arrival:</th>
+                        <th scope="col">Minutes Away:</th>
+                    </tr>
+                </thead>
+
+                <!--This is where the output will go-->
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <!--Add Employees-->
+        <div class="card">
+            <div class="card-header bg-primary text-white font-weight-bold">
+                Add Train
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Train Name:</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Destination:</label>
+                            <input type="text" class="form-control" id="destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">First Train Time (HH:mm - military time):</label>
+                            <input type="text" class="form-control" id="first-train">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Frequency (mins):</label>
+                            <input type="text" class="form-control" id="frequency">
+                        </div>
+                        ​
+                        <button type="submit" class="btn btn-primary" id="add">Submit</button>
+
+                    </form>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="text-center">
+        <p> </p>
+    </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="assets/js/train.js"></script>
+
+</body>
+​
+
+</html>
