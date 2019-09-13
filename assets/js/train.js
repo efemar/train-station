@@ -38,6 +38,7 @@ $("#add").click(function (event) {
 })
 
 
+
 // listen to child_added from the database and display database data to our table
 database.ref("/trains").on("child_added", function (snapshot) {
 
@@ -48,6 +49,7 @@ database.ref("/trains").on("child_added", function (snapshot) {
     //Calculation of next Arrival
     var tFrequency = snapshot.val().frequency;
     var firstTime = snapshot.val().firstTrain;
+
 
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
@@ -76,21 +78,23 @@ database.ref("/trains").on("child_added", function (snapshot) {
 
 
 
-    // create 6 td element
+    // create td elements
     var nameTd = $("<td>" + snapshot.val().name + "</td>");
     var destinationTd = $("<td>" + snapshot.val().destination + "</td>");
-    //var firstTrainTd = $("<td>" + snapshot.val().firstTrain + "</td>"); //this will logged in the database, but it will not be displayed on the html
     var frequencyTd = $("<td>" + snapshot.val().frequency + "</td>");
-    var convertNextTrain = $("<td>" + convertNextTrain + "</td>"); // This needs to be calculated based on  first train and frequency
+    var convertNextTrainTd = $("<td>" + convertNextTrain + "</td>"); // This needs to be calculated based on  first train and frequency
     var minsAwayTd = $("<td>" + tMinutesTillTrain + "</td>"); //This needs to be calculated based on first train, frequency and current time
 
     // append td to tr
-    newRow.append(nameTd, destinationTd, frequencyTd, convertNextTrain, minsAwayTd);
+    newRow.append(nameTd, destinationTd, frequencyTd, convertNextTrainTd, minsAwayTd);
 
     // append tr to tbody
     $("tbody").append(newRow);
 
 
 
-
 })
+
+
+
+
