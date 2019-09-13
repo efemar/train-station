@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 // listen to click from adding employee
-$("#add").click(function (event) { 
+$("#add").click(function (event) {
 
     // prevent page reloading
     event.preventDefault();
@@ -44,16 +44,35 @@ database.ref("/trains").on("child_added", function (snapshot) {
     // create a new tr row
     var newRow = $("<tr>");
 
-    
+
     //Calculation of next Arrival
-    var start = moment(snapshot.val().startDate, "MM/DD/YYYY");
-    var month = moment().diff(start, "months");
-    var totalBilled = month * snapshot.val().monthRate;
+    var tFrequency = snapshot.val().frequency;
+    var firstTime = snapshot.val().firstTrain;
 
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
 
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("HH:mm"));
 
-    //Calculation of mins Away
-    
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    var convertNextTrain = moment(nextTrain).format("HH:mm");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("HH:mm"));
 
 
 
@@ -62,11 +81,11 @@ database.ref("/trains").on("child_added", function (snapshot) {
     var destinationTd = $("<td>" + snapshot.val().destination + "</td>");
     //var firstTrainTd = $("<td>" + snapshot.val().firstTrain + "</td>"); //this will logged in the database, but it will not be displayed on the html
     var frequencyTd = $("<td>" + snapshot.val().frequency + "</td>");
-    var nextArrivalTd = $("<td>" + month + "</td>"); // This needs to be calculated based on  first train and frequency
-    var minsAwayTd = $("<td>" + totalBilled + "</td>"); //This needs to be calculated based on first train, frequency and current time
+    var convertNextTrain = $("<td>" + convertNextTrain + "</td>"); // This needs to be calculated based on  first train and frequency
+    var minsAwayTd = $("<td>" + tMinutesTillTrain + "</td>"); //This needs to be calculated based on first train, frequency and current time
 
     // append td to tr
-    newRow.append(nameTd, destinationTd, frequencyTd, nextArrivalTd, minsAwayTd);
+    newRow.append(nameTd, destinationTd, frequencyTd, convertNextTrain, minsAwayTd);
 
     // append tr to tbody
     $("tbody").append(newRow);
