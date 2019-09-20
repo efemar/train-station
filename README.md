@@ -1,4 +1,4 @@
-# train-station
+## Train Schedule Management App
 
 This train schedule management app was built to help minimize confusion for train schedules for any city/county.
 
